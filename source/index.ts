@@ -1,4 +1,5 @@
 import './lib/setup';
+
 import { LogLevel, SapphireClient } from '@sapphire/framework';
 import { GatewayIntentBits } from 'discord.js';
 

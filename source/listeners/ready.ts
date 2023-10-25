@@ -3,6 +3,8 @@ import { Listener, Store } from '@sapphire/framework';
 import { blue, gray, green, magenta, magentaBright, white, yellow } from 'colorette';
 import { ActivityType } from 'discord.js';
 
+import { version } from '../lib';
+
 const dev = process.env.NODE_ENV !== 'production';
 
 @ApplyOptions<Listener.Options>({ once: true })
@@ -51,6 +53,6 @@ ${line03}${dev ? ` ${pad}${blc('<')}${llc('/')}${blc('>')} ${llc('DEVELOPMENT MO
 	}
 
 	private activity() {
-		this.container.client.user?.setActivity('/help', { type: ActivityType.Playing })
+		this.container.client.user?.setActivity(`v${version}`, { type: ActivityType.Competing });
 	}
 }
