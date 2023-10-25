@@ -1,0 +1,16 @@
+{
+	"projectLanguage": "ts",
+	"locations": {
+		"base": "source",
+		"arguments": "arguments",
+		"commands": "commands",
+		"listeners": "listeners",
+		"preconditions": "preconditions",
+		"interaction-handlers": "interaction-handlers",
+		"routes": "routes"
+	},
+	"customFileTemplates": {
+		"enabled": false,
+		"location": ""
+	}
+}
