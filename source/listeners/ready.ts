@@ -1,6 +1,7 @@
 import { ApplyOptions } from '@sapphire/decorators';
 import { Listener, Store } from '@sapphire/framework';
 import { blue, gray, green, magenta, magentaBright, white, yellow } from 'colorette';
+import { ActivityType } from 'discord.js';
 
 const dev = process.env.NODE_ENV !== 'production';
 
@@ -11,6 +12,7 @@ export class UserEvent extends Listener {
 	public override run() {
 		this.printBanner();
 		this.printStoreDebugInformation();
+		this.activity();
 	}
 
 	private printBanner() {
@@ -46,5 +48,9 @@ ${line03}${dev ? ` ${pad}${blc('<')}${llc('/')}${blc('>')} ${llc('DEVELOPMENT MO
 
 	private styleStore(store: Store<any>, last: boolean) {
 		return gray(`${last ? '└─' : '├─'} Loaded ${this.style(store.size.toString().padEnd(3, ' '))} ${store.name}.`);
+	}
+
+	private activity() {
+		this.container.client.user?.setActivity('/help', { type: ActivityType.Playing })
 	}
 }
