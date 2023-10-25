@@ -9,3 +9,97 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model GuildSettings {
+  guildId  String   @unique
+  language Language
+}
+
+model ModerationData {
+  userId   String    @unique
+  timeouts Timeout[]
+  warns    Warn[]
+  reports  Report[]
+}
+
+model AutoRoleSettings {
+  guildId String  @unique
+  roles   String  @unique
+  enabled Boolean @default(false)
+}
+
+model AltDetectorSettings {
+  guildId String             @unique
+  age     Alt_dectection_age
+  nlp     Boolean?           @default(false) // Natural Language Processing
+}
+
+model TagSettings {
+  guildId String @unique
+  tags    Tag[]
+}
+
+model Tag {
+  name               String       @unique
+  content            String
+  TagSettings        TagSettings? @relation(fields: [tagSettingsGuildId], references: [guildId])
+  tagSettingsGuildId String?
+}
+
+model LogSettings {
+  guildId   String   @unique
+  channelId String
+  enabled   Boolean  @default(false)
+  events    Events[]
+}
+
+model Timeout {
+  userId               String          @unique
+  guildId              String
+  reason               String
+  expiresAt            DateTime
+  ModerationData       ModerationData? @relation(fields: [moderationDataUserId], references: [userId])
+  moderationDataUserId String?
+}
+
+model Warn {
+  userId               String          @unique
+  guildId              String
+  reason               String
+  moderator            String          @default("Unknown")
+  ModerationData       ModerationData? @relation(fields: [moderationDataUserId], references: [userId])
+  moderationDataUserId String?
+}
+
+model Report {
+  userId               String          @unique
+  guildId              String
+  reason               String
+  ModerationData       ModerationData? @relation(fields: [moderationDataUserId], references: [userId])
+  moderationDataUserId String?
+}
+
+enum Events {
+  GUILD_CHANNEL_CREATE
+  GUILD_CHANNEL_DELETE
+  GUILD_ROLE_CREATE
+  GUILD_ROLE_DELETE
+  GUILD_MEMBER_ADD
+  GUILD_MEMBER_REMOVE
+  GUILD_MEMBER_BAN_ADD
+  GUILD_MEMBER_BAN_REMOVE
+  MESSAGE_DELETE
+  MESSAGE_EDIT
+}
+
+enum Language {
+  EN
+  DE
+}
+
+enum Alt_dectection_age {
+  NONE
+  ONE_DAY
+  ONE_WEEK
+  ONE_MONTH
+}
