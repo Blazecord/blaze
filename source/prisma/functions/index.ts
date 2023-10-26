@@ -1,1 +1,1 @@
-export { GuildSettings } from './guild.js';
+export { GuildSettings, Language } from './guild.js';

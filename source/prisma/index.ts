@@ -1,1 +1,1 @@
-export { GuildSettings } from "./functions";
+export { GuildSettings, Language } from "./functions";

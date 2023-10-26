@@ -2,7 +2,7 @@ import { PrismaClient } from '@prisma/client';
 
 import { redis } from '../../lib';
 
-enum Language {
+export enum Language {
     EN = 'EN',
     DE = 'DE'
 }
@@ -19,7 +19,7 @@ export class GuildSettings {
      * @param guildId The guild Id
      * @returns any
      */
-    async get(guildId: string): Promise<any> {
+    async get(guildId: string) {
         return await this.client.guildSettings.findFirst(
             {
                 where: {
