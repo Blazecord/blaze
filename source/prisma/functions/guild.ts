@@ -19,7 +19,7 @@ export class GuildSettings {
      * @param guildId The guild Id
      * @returns any
      */
-    async get(guildId: string) {
+    public async get(guildId: string) {
         return await this.client.guildSettings.findFirst(
             {
                 where: {
@@ -35,7 +35,7 @@ export class GuildSettings {
      * @param language The language
      * @returns 
      */
-    async set(guildId: string, language: Language): Promise<void> {
+    public async set(guildId: string, language: Language): Promise<void> {
         const result = await redis.get(`GUILD_SETTINGS_${guildId}`);
 
         if (result) {
@@ -77,7 +77,7 @@ export class GuildSettings {
      * @param language The new language
      * @returns void
      */
-    async update(guildId: string, language: Language): Promise<void> {
+    public async update(guildId: string, language: Language): Promise<void> {
         const result = await redis.get(`GUILD_SETTINGS_${guildId}`);
 
         if (result) {
@@ -120,7 +120,7 @@ export class GuildSettings {
      * @param guildId The guild Id
      * @returns void
      */
-    async delete(guildId: string): Promise<void> {
+    public async delete(guildId: string): Promise<void> {
         const result = await redis.get(`GUILD_SETTINGS_${guildId}`);
 
         if (result) {
@@ -153,7 +153,7 @@ export class GuildSettings {
      * @param guildId The guild Id
      * @returns boolean
      */
-    async exists(guildId: string): Promise<boolean> {
+    public async exists(guildId: string): Promise<boolean> {
         const result = await this.client.guildSettings.findFirst(
             {
                 where: {

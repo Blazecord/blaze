@@ -31,18 +31,6 @@ model AltDetectorSettings {
   nlp     Boolean?           @default(false) // Natural Language Processing
 }
 
-model TagSettings {
-  guildId String @unique
-  tags    Tag[]
-}
-
-model Tag {
-  name               String       @unique
-  content            String
-  TagSettings        TagSettings? @relation(fields: [tagSettingsGuildId], references: [guildId])
-  tagSettingsGuildId String?
-}
-
 model LogSettings {
   guildId   String   @unique
   channelId String

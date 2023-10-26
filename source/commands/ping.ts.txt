@@ -1,0 +1,20 @@
+import { ApplyOptions } from '@sapphire/decorators';
+import { Command } from '@sapphire/framework';
+
+@ApplyOptions<Command.Options>({
+	name: 'ping',
+	description: "Shows Blaze's latency",
+})
+export class UserCommand extends Command {
+	public override registerApplicationCommands(registry: Command.Registry) {
+		registry.registerChatInputCommand((builder) =>
+			builder //
+				.setName(this.name)
+				.setDescription(this.description)
+		);
+	}
+
+	public override async chatInputRun(interaction: Command.ChatInputCommandInteraction) {
+		await interaction.reply(`>>> 🏓 Pong! ${this.container.client.ws}ms`);
+	}
+}
