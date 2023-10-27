@@ -1,11 +1,10 @@
 import { ApplyOptions } from '@sapphire/decorators';
 import { Command } from '@sapphire/framework';
-
-import { Embed } from '../lib/';
+import { EmbedBuilder } from 'discord.js';
 
 @ApplyOptions<Command.Options>({
 	name: 'avatar',
-	description: '👤 Get the Avatar from a Member'
+	description: 'Shows the Avatar of a User'
 })
 export class UserCommand extends Command {
 	public override registerApplicationCommands(registry: Command.Registry) {
@@ -22,15 +21,10 @@ export class UserCommand extends Command {
 	}
 
 	public override async chatInputRun(interaction: Command.ChatInputCommandInteraction,) {
-		const pingMessage = await interaction.reply({content: "Pinging...", fetchReply: true, ephemeral: true});
-		const embed = new Embed()
-			.success(`Pong! ${pingMessage.createdTimestamp - interaction.createdTimestamp}ms`, "<:wlan:1167479926409146428>")
-		
-		embed.setImage(
-			interaction.options.getUser('user')?.displayAvatarURL({ dynamic: true }
-		)
+		const embed = new EmbedBuilder()
+			.setImage(interaction.options.getUser("user", true).displayAvatarURL() ?? '');
 
-		return interaction.editReply(
+		return interaction.reply(
 			{
 				embeds: [embed],
 			}
