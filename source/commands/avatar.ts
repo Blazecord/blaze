@@ -12,22 +12,15 @@ export class UserCommand extends Command {
 			builder
 				.setName(this.name)
 				.setDescription(this.description)
-				.addUserOption((option) =>
-					option 
-						.setName('user')
-						.setDescription('The user u want the Avatar from')
-						.setRequired(true))
+				.addUserOption((option) => option.setName('user').setDescription('The user u want the Avatar from').setRequired(true))
 		);
 	}
 
-	public override async chatInputRun(interaction: Command.ChatInputCommandInteraction,) {
-		const embed = new EmbedBuilder()
-			.setImage(interaction.options.getUser("user", true).displayAvatarURL() ?? '');
+	public override async chatInputRun(interaction: Command.ChatInputCommandInteraction) {
+		const embed = new EmbedBuilder().setImage(interaction.options.getUser('user', true).displayAvatarURL() ?? '');
 
-		return interaction.reply(
-			{
-				embeds: [embed],
-			}
-		)
+		return interaction.reply({
+			embeds: [embed]
+		});
 	}
 }

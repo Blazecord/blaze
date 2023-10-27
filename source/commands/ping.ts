@@ -5,7 +5,7 @@ import { Embed } from '../lib/';
 
 @ApplyOptions<Command.Options>({
 	name: 'ping',
-	description: "Shows Blaze's latency",
+	description: "Shows Blaze's latency"
 })
 export class UserCommand extends Command {
 	public override registerApplicationCommands(registry: Command.Registry) {
@@ -17,14 +17,11 @@ export class UserCommand extends Command {
 	}
 
 	public override async chatInputRun(interaction: Command.ChatInputCommandInteraction) {
-		const pingMessage = await interaction.reply({content: "Pinging...", fetchReply: true, ephemeral: true});
-		const embed = new Embed()
-			.success(`Pong! ${pingMessage.createdTimestamp - interaction.createdTimestamp}ms`, "<:wlan:1167479926409146428>")
+		const pingMessage = await interaction.reply({ content: 'Pinging...', fetchReply: true, ephemeral: true });
+		const embed = new Embed().success(`Pong! ${pingMessage.createdTimestamp - interaction.createdTimestamp}ms`, '<:wlan:1167479926409146428>');
 
-		return interaction.editReply(
-			{
-				embeds: [embed],
-			}
-		)
+		return interaction.editReply({
+			embeds: [embed]
+		});
 	}
 }

@@ -8,5 +8,5 @@ export default new SapphireClient({
 		level: LogLevel.Debug
 	},
 	intents: [GatewayIntentBits.DirectMessages, GatewayIntentBits.GuildMessages, GatewayIntentBits.Guilds, GatewayIntentBits.MessageContent],
-	loadMessageCommandListeners: true,
+	loadMessageCommandListeners: true
 }).login();
