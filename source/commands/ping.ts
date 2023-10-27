@@ -1,6 +1,8 @@
 import { ApplyOptions } from '@sapphire/decorators';
 import { Command } from '@sapphire/framework';
 
+import { Embed } from '../lib/';
+
 @ApplyOptions<Command.Options>({
 	name: 'ping',
 	description: "Shows Blaze's latency",
@@ -15,6 +17,14 @@ export class UserCommand extends Command {
 	}
 
 	public override async chatInputRun(interaction: Command.ChatInputCommandInteraction) {
-		await interaction.reply(`>>> 🏓 Pong! ${this.container.client.ws}ms`);
+		const pingMessage = await interaction.reply({content: "Pinging...", fetchReply: true, ephemeral: true});
+		const embed = new Embed()
+			.success(`Pong! ${pingMessage.createdTimestamp - interaction.createdTimestamp}ms`, "<:wlan:1167479926409146428>")
+
+		return interaction.editReply(
+			{
+				embeds: [embed],
+			}
+		)
 	}
 }

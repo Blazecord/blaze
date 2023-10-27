@@ -8,7 +8,7 @@ import * as colorette from 'colorette';
 import { join } from 'node:path';
 
 // Set default behavior to bulk overwrite
-ApplicationCommandRegistries.setDefaultBehaviorWhenNotIdentical(RegisterBehavior.Overwrite);
+ApplicationCommandRegistries.setDefaultBehaviorWhenNotIdentical(RegisterBehavior.BulkOverwrite);
 
 // Read env var
 setup({ path: join('.', '.env') });
