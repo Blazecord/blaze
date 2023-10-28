@@ -1,16 +1,20 @@
-import { ApplyOptions } from '@sapphire/decorators';
-import { Listener, container } from '@sapphire/framework';
+import { Listener, Events } from '@sapphire/framework';
+import { GuildMember } from 'discord.js';
 
-@ApplyOptions<Listener.Options>({ once: false })
+import { AutoRole } from '../prisma';
+
 export class UserEvent extends Listener {
+	private autoRole: AutoRole;
 	public constructor(context: Listener.Context, options: Listener.Options) {
 		super(context, {
 			...options,
-			emitter: container.client.ws,
-			event: 'GUILD_MEMBER_ADD'
+			event: Events.GuildMemberAdd
 		});
-	}
-	public override run() {
 
+		this.autoRole = new AutoRole();
+	}
+	public async run(member: GuildMember) {
+		console.log('User joined');
+		console.log(await this.autoRole.get(member.guild.id));
 	}
 }

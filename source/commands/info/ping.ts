@@ -1,7 +1,7 @@
 import { ApplyOptions } from '@sapphire/decorators';
 import { Command } from '@sapphire/framework';
 
-import { Embed } from '../lib/';
+import { Embed } from '../../lib';
 
 @ApplyOptions<Command.Options>({
 	name: 'ping',

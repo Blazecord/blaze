@@ -1,7 +1,7 @@
 import { Subcommand } from '@sapphire/plugin-subcommands';
 
-import { Embed } from '../lib';
-import { AutoRole } from '../prisma/';
+import { Embed } from '../../lib';
+import { AutoRole } from '../../prisma/';
 
 export class UserCommand extends Subcommand {
 	constructor(context: Subcommand.Context, options: Subcommand.Options) {
@@ -28,7 +28,7 @@ export class UserCommand extends Subcommand {
 
 	public async chatInputAutorole(interaction: Subcommand.ChatInputCommandInteraction) {
 		const autorole = new AutoRole();
-		
+
 		const role = interaction.options.getRole('role', true);
 
 		await autorole.set(interaction.guildId!, role.id);
