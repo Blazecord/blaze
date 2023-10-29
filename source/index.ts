@@ -18,5 +18,12 @@ export default new SapphireClient({
 		GatewayIntentBits.GuildInvites,
 		GatewayIntentBits.MessageContent
 	],
-	loadMessageCommandListeners: true
+	loadMessageCommandListeners: true,
+	api: {
+		listenOptions: {
+			port: 4000
+		},
+		origin: '*',
+		// prefix: `/api/v${version}/`
+	}
 }).login();
