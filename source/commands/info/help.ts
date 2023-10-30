@@ -16,7 +16,7 @@ export class UserCommand extends Command {
 		const commands = interaction.client.application?.commands.cache;
 		if (commands) {
 			commands.forEach((command) => {
-				console.log(`Slash-Befehl: ${command.name}`);
+				console.log(command.name)
 			});
 		}
 
