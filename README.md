@@ -47,3 +47,4 @@ discussed.
 ## Links
 
 [License](https://mit-lisence.org)
+[Repo](https://github.com/blazecord/blaze.git)
