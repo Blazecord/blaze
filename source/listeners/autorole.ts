@@ -14,7 +14,16 @@ export class UserEvent extends Listener {
 		this.autoRole = new AutoRole();
 	}
 	public async run(member: GuildMember) {
-		console.log('User joined');
-		console.log(await this.autoRole.get(member.guild.id));
+		const autoRoleData = await this.autoRole.get(member.guild.id);
+		if (!autoRoleData) return;
+
+		const role = await member.guild.roles.fetch(autoRoleData.roles);
+		if (!role) return;
+
+		try {
+			await member.roles.add(role);
+		} catch (error) {
+			return;
+		}
 	}
 }
