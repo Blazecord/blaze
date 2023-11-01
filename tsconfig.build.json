@@ -4,8 +4,11 @@
 		"rootDir": "source",
 		"outDir": "dist",
 		"tsBuildInfoFile": "dist/.tsbuildinfo",
-		"noUnusedLocals": false,
-		"noUnusedParameters": false,
 	},
-	"include": ["source"]
+	"include": ["source"],
+    "exclude": [
+        "**/*.test.ts",
+        "**/*.spec.ts",
+        "**/test/**/*",
+    ]
 }

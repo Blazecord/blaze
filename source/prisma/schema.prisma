@@ -34,8 +34,6 @@ model AltDetectorSettings {
 model LogSettings {
   guildId   String   @unique
   channelId String
-  enabled   Boolean  @default(false)
-  events    Events[]
 }
 
 model Timeout {
@@ -62,19 +60,6 @@ model Report {
   reason               String
   ModerationData       ModerationData? @relation(fields: [moderationDataUserId], references: [userId])
   moderationDataUserId String?
-}
-
-enum Events {
-  GUILD_CHANNEL_CREATE
-  GUILD_CHANNEL_DELETE
-  GUILD_ROLE_CREATE
-  GUILD_ROLE_DELETE
-  GUILD_MEMBER_ADD
-  GUILD_MEMBER_REMOVE
-  GUILD_MEMBER_BAN_ADD
-  GUILD_MEMBER_BAN_REMOVE
-  MESSAGE_DELETE
-  MESSAGE_EDIT
 }
 
 enum Language {

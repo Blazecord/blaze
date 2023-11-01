@@ -1,6 +1,7 @@
 import { ApplyOptions } from '@sapphire/decorators';
 import { Command } from '@sapphire/framework';
-import { EmbedBuilder } from 'discord.js';
+
+import { Embed } from '../../lib';
 
 @ApplyOptions<Command.Options>({
 	name: 'avatar',
@@ -12,12 +13,14 @@ export class UserCommand extends Command {
 			builder
 				.setName(this.name)
 				.setDescription(this.description)
-				.addUserOption((option) => option.setName('user').setDescription('The user u want the Avatar from').setRequired(true))
+				.addUserOption((option) => option.setName('user').setDescription('The user to get Avatar from').setRequired(true))
 		);
 	}
 
 	public override async chatInputRun(interaction: Command.ChatInputCommandInteraction) {
-		const embed = new EmbedBuilder().setImage(interaction.options.getUser('user', true).displayAvatarURL() ?? '');
+		const embed = new Embed()
+			.setImage(interaction.options.getUser('user', true).displayAvatarURL() ?? '')
+			.success(`[URL](${interaction.options.getUser('user', true).displayAvatarURL()})`)
 
 		return interaction.reply({
 			embeds: [embed]
