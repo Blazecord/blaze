@@ -1,6 +1,6 @@
 # Blaze
 
-<img align="right" alt="DiscordGo logo" src="assets/BLAZE-removebg-preview.png" width="400">
+<img align="right" alt="DiscordGo logo" src="assets/BLAZEBANNER.png" width="400">
 
 Blaze is a powerful moderation bot that provides fast responses to commands and is packed with a fully functional Security System build using [TypeScript](https://www.typescriptlang.org/) and the latest version of [discord.js](https://npmjs.com/package/discord.js) and using an extension for discord.js named [@sapphire/framework](https://www.npmjs.com/package/@sapphire/framework)
 
