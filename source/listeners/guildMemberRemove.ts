@@ -5,13 +5,13 @@ import { Events, Listener } from '@sapphire/framework';
 import { Logging } from '../prisma';
 import { formatDiscordTimestamp } from '../lib';
 
-export class GuildMemberAdd extends Listener {
+export class GuildMemberRemove extends Listener {
 	private logging: Logging;
 
 	public constructor(context: Listener.Context, options: Listener.Options) {
 		super(context, {
 			...options,
-			event: Events.GuildMemberAdd
+			event: Events.GuildMemberRemove
 		});
 
 		this.logging = new Logging();
@@ -28,7 +28,7 @@ export class GuildMemberAdd extends Listener {
 
 		const embed = new EmbedBuilder()
 			.setColor('#802e2e')
-			.setAuthor({ name: 'Guild Member Add', iconURL: this.container.client.user?.displayAvatarURL() })
+			.setAuthor({ name: 'Guild Member Remove', iconURL: this.container.client.user?.displayAvatarURL() })
 			.addFields([
 				{ name: 'Who?', value: `>>> ${member.user?.tag ?? 'Unknown'}` },
 				{ name: 'Created At', value: `>>> ${formatDiscordTimestamp(member.user?.createdAt!, 'R')}` }
