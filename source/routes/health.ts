@@ -5,7 +5,7 @@ export class UserRoute extends Route {
 		super(context, {
 			...options,
 			route: 'health'
-		})
+		});
 	}
 	public [methods.GET](_request: ApiRequest, response: ApiResponse) {
 		response.json({ status: 'online' });

@@ -1,3 +1,4 @@
-export { version } from './constants';
-export { redis } from './redis';
-export { Embed } from './embed';
+export { version } from './constants.js';
+export { redis } from './redis.js';
+export { Embed } from './embed.js';
+export { formatDiscordTimestamp } from './utils.js';

@@ -20,7 +20,7 @@ export class UserCommand extends Command {
 	public override async chatInputRun(interaction: Command.ChatInputCommandInteraction) {
 		const embed = new Embed()
 			.setImage(interaction.options.getUser('user', true).displayAvatarURL() ?? '')
-			.success(`[URL](${interaction.options.getUser('user', true).displayAvatarURL()})`)
+			.success(`[URL](${interaction.options.getUser('user', true).displayAvatarURL()})`);
 
 		return interaction.reply({
 			embeds: [embed]

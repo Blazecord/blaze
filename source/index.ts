@@ -22,9 +22,9 @@ export default new SapphireClient({
 	loadMessageCommandListeners: true,
 	api: {
 		listenOptions: {
-			port: 4000,
+			port: 4000
 		},
-		origin: '*',
+		origin: '*'
 		// prefix: `/api/v${version}/`,
 	}
 }).login();

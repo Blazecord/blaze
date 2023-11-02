@@ -4,7 +4,7 @@ import { Events, Listener } from '@sapphire/framework';
 
 import { AutoRole } from '../prisma';
 
-export class UserEvent extends Listener {
+export class Roles extends Listener {
 	private autoRole: AutoRole;
 	public constructor(context: Listener.Context, options: Listener.Options) {
 		super(context, {

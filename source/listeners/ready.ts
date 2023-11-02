@@ -1,15 +1,20 @@
 import { blue, gray, green, magenta, magentaBright, white, yellow } from 'colorette';
 import { ActivityType } from 'discord.js';
 
-import { ApplyOptions } from '@sapphire/decorators';
 import { Listener, Store } from '@sapphire/framework';
 
 import { version } from '../lib';
 
 const dev = process.env.NODE_ENV !== 'production';
 
-@ApplyOptions<Listener.Options>({ once: true })
-export class UserEvent extends Listener {
+export class Ready extends Listener {
+	public constructor(context: Listener.Context, options: Listener.Options) {
+		super(context, {
+			...options,
+			event: 'ready',
+			once: true
+		});
+	}
 	private readonly style = dev ? yellow : blue;
 
 	public override run() {

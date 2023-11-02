@@ -1,14 +1,16 @@
 import { cyan } from 'colorette';
 
 import {
-    container,
+	container,
 	type ChatInputCommandSuccessPayload,
 	type Command,
 	type ContextMenuCommandSuccessPayload,
-    type MessageCommandSuccessPayload
+	type MessageCommandSuccessPayload
 } from '@sapphire/framework';
 
 import type { APIUser, Guild, User } from 'discord.js';
+
+type formatDiscordTimestampType = 'f' | 'F' | 'd' | 'D' | 't' | 'T' | 'R';
 
 export function logSuccessCommand(payload: ContextMenuCommandSuccessPayload | ChatInputCommandSuccessPayload | MessageCommandSuccessPayload): void {
 	let successLoggerData: ReturnType<typeof getSuccessLoggerData>;
@@ -46,4 +48,10 @@ function getAuthorInfo(author: User | APIUser) {
 function getGuildInfo(guild: Guild | null) {
 	if (guild === null) return 'Direct Messages';
 	return `${guild.name}[${cyan(guild.id)}]`;
+}
+
+export function formatDiscordTimestamp(date: Date, format: formatDiscordTimestampType) {
+	const unixTime = Math.floor(date.getTime() / 1000);
+
+	return `<t:${unixTime}:${format}>`;
 }

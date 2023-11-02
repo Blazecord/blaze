@@ -24,13 +24,17 @@ export class UserCommand extends Subcommand {
 					command
 						.setName('autorole')
 						.setDescription('Setup Blazes Autorole system')
-						.addRoleOption((option) => option.setName('role').setDescription('The role you want to give to new members').setRequired(true))
+						.addRoleOption((option) =>
+							option.setName('role').setDescription('The role you want to give to new members').setRequired(true)
+						)
 				)
 				.addSubcommand((command) =>
 					command
 						.setName('logging')
 						.setDescription('Setup Blazes Logging system')
-						.addChannelOption((option) => option.setName('channel').setDescription('The channel you want to send the logs to').setRequired(true))
+						.addChannelOption((option) =>
+							option.setName('channel').setDescription('The channel you want to send the logs to').setRequired(true)
+						)
 				)
 		);
 	}
@@ -55,15 +59,12 @@ export class UserCommand extends Subcommand {
 
 		const channel = interaction.options.getChannel('channel', true);
 
-		await logging.set(interaction.guildId!, channel.id)
+		await logging.set(interaction.guildId!, channel.id);
 
 		const embed = new Embed().success(`The Logging channel has been set to <#${channel.id}>`);
 
-		await interaction.reply(
-			{
-				embeds: [embed],
-			}
-		)
-
+		await interaction.reply({
+			embeds: [embed]
+		});
 	}
 }
