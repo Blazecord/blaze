@@ -1,6 +1,6 @@
-import { PrismaClient } from "@prisma/client";
+import { PrismaClient } from '@prisma/client';
 
-import { redis } from "../../lib";
+import { redis } from '../../lib';
 
 export class Logging {
     private prisma: PrismaClient;
@@ -26,7 +26,13 @@ export class Logging {
             await redis.del(guildId);
         }
 
-        const data = await this.get(guildId);
+        const data = await this.prisma.logSettings.findFirst(
+            {
+                where: {
+                    guildId: guildId
+                }
+            }
+        )
 
         if (data) {
             await this.prisma.logSettings.update(
@@ -35,6 +41,7 @@ export class Logging {
                         guildId: guildId
                     },
                     data: {
+                        guildId: guildId,
                         channelId: channelId
                     }
                 }

@@ -1,8 +1,9 @@
 import './lib/setup';
 import 'dotenv/config';
 
-import { LogLevel, SapphireClient } from '@sapphire/framework';
 import { GatewayIntentBits } from 'discord.js';
+
+import { LogLevel, SapphireClient } from '@sapphire/framework';
 
 const dev = process.env.NODE_ENV ? process.env.NODE_ENV === 'development' : false;
 

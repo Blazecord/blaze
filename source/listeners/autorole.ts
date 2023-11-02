@@ -1,5 +1,6 @@
-import { Listener, Events } from '@sapphire/framework';
 import { GuildMember } from 'discord.js';
+
+import { Events, Listener } from '@sapphire/framework';
 
 import { AutoRole } from '../prisma';
 

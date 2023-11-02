@@ -1,4 +1,4 @@
-import { methods, Route, type ApiRequest, type ApiResponse } from '@sapphire/plugin-api';
+import { ApiRequest, ApiResponse, methods, Route, type } from '@sapphire/plugin-api';
 
 export class UserRoute extends Route {
 	public constructor(context: Route.Context, options: Route.Options) {

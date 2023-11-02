@@ -1,4 +1,4 @@
-import { EmbedBuilder, ColorResolvable } from 'discord.js';
+import { ColorResolvable, EmbedBuilder } from 'discord.js';
 
 export class Embed extends EmbedBuilder {
 	private color: string;

@@ -25,7 +25,9 @@ export class UserCommand extends Subcommand {
 						.setName('autorole')
 						.setDescription('Setup Blazes Autorole system')
 						.addRoleOption((option) => option.setName('role').setDescription('The role you want to give to new members').setRequired(true))
-
+				)
+				.addSubcommand((command) =>
+					command
 						.setName('logging')
 						.setDescription('Setup Blazes Logging system')
 						.addChannelOption((option) => option.setName('channel').setDescription('The channel you want to send the logs to').setRequired(true))

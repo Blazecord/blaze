@@ -1,11 +1,13 @@
+import { cyan } from 'colorette';
+
 import {
-	container,
+    container,
 	type ChatInputCommandSuccessPayload,
 	type Command,
 	type ContextMenuCommandSuccessPayload,
-	type MessageCommandSuccessPayload
+    type MessageCommandSuccessPayload
 } from '@sapphire/framework';
-import { cyan } from 'colorette';
+
 import type { APIUser, Guild, User } from 'discord.js';
 
 export function logSuccessCommand(payload: ContextMenuCommandSuccessPayload | ChatInputCommandSuccessPayload | MessageCommandSuccessPayload): void {
