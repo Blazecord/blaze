@@ -1,9 +1,9 @@
 {
   "name": "blaze",
-  "version": "0.6.4",
+  "version": "0.7.23",
   "description": "The Guardian of Moderation!",
   "main": "dist/index.js",
-  "author": "@sapphire",
+  "author": "ryzm",
   "license": "MIT",
   "type": "commonjs",
   "dependencies": {
