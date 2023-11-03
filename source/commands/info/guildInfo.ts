@@ -6,8 +6,8 @@ export class UserCommand extends Command {
 		super(context, {
 			...options,
 			name: 'serverinfo',
-			description: 'Shows information about the server',
-		})
+			description: 'Shows information about the server'
+		});
 	}
 	public override registerApplicationCommands(registry: Command.Registry) {
 		registry.registerChatInputCommand((builder) =>
@@ -23,15 +23,11 @@ export class UserCommand extends Command {
 		const guildIconUrl = interaction.guild?.iconURL();
 		const bannerUrl = interaction.guild?.bannerURL();
 		const splashUrl = interaction.guild?.splashURL();
-		const guildOwner = this.container.client.users.cache.get(interaction.guild?.ownerId ?? "");
+		const guildOwner = this.container.client.users.cache.get(interaction.guild?.ownerId ?? '');
 		const embed = new EmbedBuilder()
-			.setColor("#802e2e")
-			.setThumbnail(interaction.guild?.iconURL() ?? "")
-			.addFields(
-				[
-					{ name: 'Info', value: `>>> Name: ${interaction.guild?.name}\nId: ${interaction.guild?.id}`, inline: true},
-				]
-			)
+			.setColor('#802e2e')
+			.setThumbnail(interaction.guild?.iconURL() ?? '')
+			.addFields([{ name: 'Info', value: `>>> Name: ${interaction.guild?.name}\nId: ${interaction.guild?.id}`, inline: true }]);
 
 		await interaction.reply({ embeds: [embed] });
 	}

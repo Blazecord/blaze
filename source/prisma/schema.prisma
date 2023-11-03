@@ -32,7 +32,7 @@ model AltDetectorSettings {
 }
 
 model LogSettings {
-  guildId   String   @unique
+  guildId   String @unique
   channelId String
 }
 
