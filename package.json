@@ -53,7 +53,8 @@
     "migrate:reset": "prisma migrate reset --force",
     "prisma:format": "prisma format",
     "prisma:studio": "prisma studio",
-    "lint": "eslint --fix source/"
+    "lint": "eslint --fix source/",
+    "prepare": "husky install"
   },
   "prettier": "@sapphire/prettier-config",
   "prisma": {

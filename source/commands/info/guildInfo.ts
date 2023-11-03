@@ -18,6 +18,12 @@ export class UserCommand extends Command {
 	}
 
 	public override async chatInputRun(interaction: Command.ChatInputCommandInteraction) {
+		const guildName = interaction.guild?.name;
+		const guildId = interaction.guild?.id;
+		const guildIconUrl = interaction.guild?.iconURL();
+		const bannerUrl = interaction.guild?.bannerURL();
+		const splashUrl = interaction.guild?.splashURL();
+		const guildOwner = this.container.client.users.cache.get(interaction.guild?.ownerId ?? "");
 		const embed = new EmbedBuilder()
 			.setColor("#802e2e")
 			.setThumbnail(interaction.guild?.iconURL() ?? "")

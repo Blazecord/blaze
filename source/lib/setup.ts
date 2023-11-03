@@ -5,6 +5,7 @@ import '@sapphire/plugin-logger/register';
 
 import * as colorette from 'colorette';
 import { join } from 'node:path';
+import { rootDir } from './constants.js';
 
 import { ApplicationCommandRegistries, RegisterBehavior } from '@sapphire/framework';
 import { setup } from '@skyra/env-utilities';
@@ -13,7 +14,7 @@ import { setup } from '@skyra/env-utilities';
 ApplicationCommandRegistries.setDefaultBehaviorWhenNotIdentical(RegisterBehavior.BulkOverwrite);
 
 // Read env var
-setup({ path: join('.', '.env') });
+setup({ path: join(rootDir, '.env') });
 
 // Enable colorette
 colorette.createColors({ useColor: true });
