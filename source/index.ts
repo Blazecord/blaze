@@ -17,7 +17,9 @@ export default new SapphireClient({
 		GatewayIntentBits.Guilds,
 		GatewayIntentBits.GuildMembers,
 		GatewayIntentBits.GuildInvites,
-		GatewayIntentBits.MessageContent
+		GatewayIntentBits.MessageContent,
+		GatewayIntentBits.GuildModeration
+
 	],
 	loadMessageCommandListeners: true,
 	api: {
