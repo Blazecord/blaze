@@ -1,8 +1,10 @@
-import '../lib/setup';
+import '../lib/setup.js';
 import 'dotenv/config';
 
 import { ActivityType, GatewayIntentBits, Options } from "discord.js";
 import { LogLevel, SapphireClient } from "@sapphire/framework";
+
+import { Server } from './Server.js' 
 
 const dev = process.env.NODE_ENV ? process.env.NODE_ENV === 'development' : false;
 
@@ -60,6 +62,8 @@ export class Blaze extends SapphireClient {
 
     private init() {
         this.emit('start', this)
+
+        new Server().run()
 
         this.login(process.env.DISCORD_TOKEN)
     }

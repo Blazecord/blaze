@@ -57,6 +57,7 @@ export class ModerationData {
 		});
 
 		if (moderationData) {
+			// Merges the old data with the new data
 			const updatedTimeouts = [...moderationData.timeouts, ...timeouts];
 			const updatedWarns = [...moderationData.warns, ...warns];
 			const updatedReports = [...moderationData.reports, ...reports];

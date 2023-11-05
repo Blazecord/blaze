@@ -51,7 +51,7 @@ function getGuildInfo(guild: Guild | null) {
 }
 
 export function formatDiscordTimestamp(date: Date, format: formatDiscordTimestampType) {
-	const unixTime = Math.floor(date.getTime() / 1000);
+	const unixTime = Math.floor(date.getTime() / 1000); // Discord timestamps are UNIX timestamps in seconds
 
 	return `<t:${unixTime}:${format}>`;
 }
