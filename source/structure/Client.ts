@@ -4,7 +4,8 @@ import 'dotenv/config';
 import { ActivityType, GatewayIntentBits, Options } from "discord.js";
 import { LogLevel, SapphireClient } from "@sapphire/framework";
 
-import { Server } from './Server.js' 
+import { WSServer } from './WebSocket.js';
+import { Server } from './Server.js';
 
 const dev = process.env.NODE_ENV ? process.env.NODE_ENV === 'development' : false;
 
@@ -48,12 +49,6 @@ export class Blaze extends SapphireClient {
                         },
                     ]
                 },
-                api: {
-                    listenOptions: {
-                        port: Number(process.env.PORT)
-                    },
-                    // prefix: `/api/v${version}/`,
-                },
                 loadMessageCommandListeners: true,
             }
         )
@@ -63,7 +58,11 @@ export class Blaze extends SapphireClient {
     private init() {
         this.emit('start', this)
 
-        new Server().run()
+        const wsserver = new WSServer()
+        const httpServer = new Server()
+
+        wsserver.run()
+        httpServer.run()
 
         this.login(process.env.DISCORD_TOKEN)
     }

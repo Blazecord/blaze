@@ -1,7 +1,7 @@
 import { blue, gray, green, magenta, magentaBright, white, yellow } from 'colorette';
 import { ActivityType } from 'discord.js';
 
-import { Listener, Store } from '@sapphire/framework';
+import { Events, Listener, Store } from '@sapphire/framework';
 
 import { version } from '../lib';
 
@@ -11,7 +11,7 @@ export class Ready extends Listener {
 	public constructor(context: Listener.Context, options: Listener.Options) {
 		super(context, {
 			...options,
-			event: 'ready',
+			event: Events.ClientReady,
 			once: true
 		});
 	}

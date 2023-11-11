@@ -10,9 +10,11 @@ WORKDIR /blaze
 COPY package.json .
 COPY package-lock.json .
 
+COPY . .
+
 RUN npm install
 
-COPY . .
+EXPOSE 4000 
 
 RUN npm run build
 
