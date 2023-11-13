@@ -2,6 +2,7 @@ import { Subcommand } from '@sapphire/plugin-subcommands';
 
 import { Embed } from '../../lib';
 import { AutoRole, Logging } from '../../prisma/';
+import { PermissionFlagsBits } from 'discord.js';
 
 export class UserCommand extends Subcommand {
 	constructor(context: Subcommand.Context, options: Subcommand.Options) {
@@ -20,51 +21,79 @@ export class UserCommand extends Subcommand {
 			builder //
 				.setName('setup')
 				.setDescription('setup commands of Blaze')
+				.setDMPermission(false)
+				.setDefaultMemberPermissions(PermissionFlagsBits.Administrator)
 				.addSubcommand((command) =>
 					command
 						.setName('autorole')
-						.setDescription('Setup Blazes Autorole system')
+						.setDescription('Setup AutoRoles for your Guild')
 						.addRoleOption((option) =>
-							option.setName('role').setDescription('The role you want to give to new members').setRequired(true)
+							option.setName('role').setDescription('The Role you want to give to new members').setRequired(true)
 						)
 				)
 				.addSubcommand((command) =>
 					command
 						.setName('logging')
-						.setDescription('Setup Blazes Logging system')
+						.setDescription('Setup Logging for your Guild')
 						.addChannelOption((option) =>
-							option.setName('channel').setDescription('The channel you want to send the logs to').setRequired(true)
+							option.setName('channel').setDescription('The Channel you want to send the logs to').setRequired(true)
 						)
 				)
 		);
 	}
 
 	public async chatInputAutorole(interaction: Subcommand.ChatInputCommandInteraction) {
-		const autorole = new AutoRole();
+		try {
+			const autorole = new AutoRole();
 
-		const role = interaction.options.getRole('role', true);
+			const role = interaction.options.getRole('role', true);
 
-		await autorole.set(interaction.guildId!, role.id);
+			await autorole.set(interaction.guildId!, role.id);
 
-		const embed = new Embed().success(`The Autorole has been set to <@&${role.id}>`);
+			const embed = new Embed().success(`The Autorole has been set to <@&${role.id}>`);
 
-		await interaction.reply({
-			embeds: [embed],
-			ephemeral: true
-		});
+			await interaction.reply({
+				embeds: [embed],
+				ephemeral: true
+			});
+		} catch (error) {
+			const embed = new Embed().error("Something went wrong, please try again later!");
+			
+			await interaction.reply(
+				{
+					embeds: [embed],
+					ephemeral: true
+				}
+			)
+
+			throw new Error(error as string);
+		}
 	}
 
 	public async chatInputLogging(interaction: Subcommand.ChatInputCommandInteraction) {
-		const logging = new Logging();
+		try {
+			const logging = new Logging();
 
-		const channel = interaction.options.getChannel('channel', true);
+			const channel = interaction.options.getChannel('channel', true);
 
-		await logging.set(interaction.guildId!, channel.id);
+			await logging.set(interaction.guildId!, channel.id);
 
-		const embed = new Embed().success(`The Logging channel has been set to <#${channel.id}>`);
+			const embed = new Embed().success(`The Logging channel has been set to <#${channel.id}>`);
 
-		await interaction.reply({
-			embeds: [embed]
-		});
+			await interaction.reply({
+				embeds: [embed]
+			});
+		} catch (error) {
+			const embed = new Embed().error("Something went wrong, please try again later!");
+
+			await interaction.reply(
+				{
+					embeds: [embed],
+					ephemeral: true
+				}
+			)
+
+			throw new Error(error as string);
+		}
 	}
 }

@@ -18,12 +18,23 @@ export class UserCommand extends Command {
 	}
 
 	public override async chatInputRun(interaction: Command.ChatInputCommandInteraction) {
-		const embed = new Embed()
-			.setImage(interaction.options.getUser('user', true).displayAvatarURL() ?? '')
-			.success(`[URL](${interaction.options.getUser('user', true).displayAvatarURL()})`);
+		try {
+			const embed = new Embed()
+				.setImage(interaction.options.getUser('user', true).displayAvatarURL() ?? '')
+				.success(`[URL](${interaction.options.getUser('user', true).displayAvatarURL()})`);
 
-		return interaction.reply({
-			embeds: [embed]
-		});
+			await interaction.reply({
+				embeds: [embed]
+			});
+		} catch (error) {
+			const embed = new Embed().error("Something went wrong, please try again later!");
+
+			await interaction.reply({
+				embeds: [embed],
+				ephemeral: true
+			});
+
+			throw new Error(error as string); 
+		}
 	}
 }

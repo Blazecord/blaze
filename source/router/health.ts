@@ -1,7 +1,7 @@
-import { Router } from "express";
+import { Router } from 'express';
 
-import { health } from "../controllers/";
+import { health } from '../controllers/';
 
 export default (router: Router) => {
-    router.get('/health', health);
-}
+	router.get('/health', health);
+};
