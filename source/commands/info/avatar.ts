@@ -27,14 +27,14 @@ export class UserCommand extends Command {
 				embeds: [embed]
 			});
 		} catch (error) {
-			const embed = new Embed().error("Something went wrong, please try again later!");
+			const embed = new Embed().error('Something went wrong, please try again later!');
 
 			await interaction.reply({
 				embeds: [embed],
 				ephemeral: true
 			});
 
-			throw new Error(error as string); 
+			throw new Error(error as string);
 		}
 	}
 }

@@ -12,6 +12,7 @@ const dev = process.env.NODE_ENV ? process.env.NODE_ENV === 'development' : fals
 export class Blaze extends SapphireClient {
 	constructor() {
 		super({
+			shards: 'auto', // Automatically calculate the amount of shards to use, better for performance.
 			logger: {
 				level: dev ? LogLevel.Debug : LogLevel.Info
 			},
