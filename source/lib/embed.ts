@@ -1,3 +1,5 @@
+import "dotenv/config.js";
+
 import { ColorResolvable, EmbedBuilder } from 'discord.js';
 
 export class Embed extends EmbedBuilder {
@@ -22,11 +24,13 @@ export class Embed extends EmbedBuilder {
 		if (emoji) {
 			this.setDescription(`>>> ${emoji} ${message}`);
 			this.setColor(this.color as ColorResolvable);
+			this.setFooter({ text: process.env.FOOTER as string })
 
 			return this;
 		} else {
 			this.setDescription(`>>> ${this.yes} ${message}`);
 			this.setColor(this.color as ColorResolvable);
+			this.setFooter({ text: process.env.FOOTER as string })
 
 			return this;
 		}
@@ -35,6 +39,7 @@ export class Embed extends EmbedBuilder {
 	public error(message: string) {
 		this.setDescription(`>>> ${this.no} ${message}`);
 		this.setColor(this.error_color as ColorResolvable);
+		this.setFooter({ text: process.env.FOOTER as string })
 
 		return this;
 	}
@@ -42,6 +47,7 @@ export class Embed extends EmbedBuilder {
 	public warning(message: string) {
 		this.setDescription(`>>> ${this.warning_emoji} ${message}`);
 		this.setColor(this.warning_color as ColorResolvable);
+		this.setFooter({ text: process.env.FOOTER as string })
 
 		return this;
 	}
