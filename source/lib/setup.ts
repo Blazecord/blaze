@@ -1,5 +1,5 @@
 // Unless explicitly defined, set NODE_ENV as development:
-process.env.NODE_ENV ??= 'development'; // TODO: Remove this line when deploying to production 
+process.env.NODE_ENV ??= 'development'; // TODO: Remove this line when deploying to production
 
 import '@sapphire/plugin-logger/register';
 
